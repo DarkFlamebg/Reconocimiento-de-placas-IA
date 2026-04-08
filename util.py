@@ -1,5 +1,6 @@
 import string
 import easyocr
+import numpy as np
 
 # Inicializar el lector de OCR
 reader = easyocr.Reader(['en'], gpu=False)
@@ -22,7 +23,7 @@ dict_int_to_char = {'0': 'O',
 
 def write_csv(results, output_path):
     """
-   escribir los resultados en un archivo CSV.
+    escribir los resultados en un archivo CSV.
     """
     with open(output_path, 'w') as f:
         f.write('{},{},{},{},{},{},{}\n'.format('frame_nmr', 'car_id', 'car_bbox',
@@ -31,7 +32,6 @@ def write_csv(results, output_path):
 
         for frame_nmr in results.keys():
             for car_id in results[frame_nmr].keys():
-                print(results[frame_nmr][car_id])
                 if 'car' in results[frame_nmr][car_id].keys() and \
                    'license_plate' in results[frame_nmr][car_id].keys() and \
                    'text' in results[frame_nmr][car_id]['license_plate'].keys():
@@ -51,7 +51,7 @@ def write_csv(results, output_path):
                                                             results[frame_nmr][car_id]['license_plate']['text'],
                                                             results[frame_nmr][car_id]['license_plate']['text_score'])
                             )
-        f.close()
+    f.close()
 
 
 def license_complies_format(text):
@@ -75,13 +75,13 @@ def license_complies_format(text):
 
 def format_license(text):
     """
-   formato de la placa cumple con los caracteres de la placa.
+    formato de la placa cumple con los caracteres de la placa.
     """
     license_plate_ = ''
     mapping = {0: dict_int_to_char, 1: dict_int_to_char, 4: dict_int_to_char, 5: dict_int_to_char, 6: dict_int_to_char,
                2: dict_char_to_int, 3: dict_char_to_int}
-    for j in [0, 1, 2, 3, 4, 5, 6]:
-        if text[j] in mapping[j].keys():
+    for j in range(len(text)):
+        if j in mapping and text[j] in mapping[j].keys():
             license_plate_ += mapping[j][text[j]]
         else:
             license_plate_ += text[j]
@@ -93,37 +93,52 @@ def read_license_plate(license_plate_crop):
     """
     leer el texto de la placa de la imagen de la placa o video capturado.   
     """
-
-    detections = reader.readtext(license_plate_crop)
-
-    for detection in detections:
-        bbox, text, score = detection
-
-        text = text.upper().replace(' ', '')
-
-        if license_complies_format(text):
-            return format_license, score
-
-    return None,None
+    if license_plate_crop is None or license_plate_crop.size == 0:
+        return None, None
     
+    try:
+        detections = reader.readtext(license_plate_crop)
+        
+        for detection in detections:
+            bbox, text, score = detection
+            text = text.upper().replace(' ', '')
+            
+            if license_complies_format(text):
+                formatted_text = format_license(text)
+                return formatted_text, score
+        
+        return None, None
+    except Exception as e:
+        print(f"Error en OCR: {e}")
+        return None, None
+
 
 def get_car(license_plate, vehicle_track_ids):
     """
     obtener el vehiculo que corresponde a la placa.
     """
+    if len(license_plate) >= 4:
+        x1, y1, x2, y2, score, class_id = license_plate[:6]
+    else:
+        return -1, -1, -1, -1, -1
+
+    foundIt = False
+    car_indx = -1
     
-    x1, y1, x2, y2, score, class_id, = license_plate
-
-    foundIt= False
     for j in range(len(vehicle_track_ids)):
-        xcar1, ycar1, xcar2, ycar2, car_id = vehicle_track_ids[j]
+        track = vehicle_track_ids[j]
+        if len(track) >= 5:
+            xcar1, ycar1, xcar2, ycar2, car_id = track[:5]
+            
+            # Verificar si la placa está dentro del vehículo
+            if x1 > xcar1 and y1 > ycar1 and x2 < xcar2 and y2 < ycar2:
+                car_indx = j
+                foundIt = True
+                break
 
-        if x1 > xcar1 and y1 >  ycar1 and x2 < xcar2 and y2 < ycar2:
-            car_indx = j
-            foundIt =  True
-            break
-
-    if foundIt:
-        return vehicle_track_ids[car_indx]
-
-    return -1, -1, -1, -1
+    if foundIt and car_indx >= 0:
+        track = vehicle_track_ids[car_indx]
+        if len(track) >= 5:
+            return track[0], track[1], track[2], track[3], track[4]
+    
+    return -1, -1, -1, -1, -1
